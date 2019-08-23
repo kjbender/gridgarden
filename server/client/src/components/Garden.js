@@ -12,6 +12,7 @@ import corn from '../icons/corn.svg'
 import carrot from '../icons/carrot.svg'
 import tomato from '../icons/tomato.svg'
 import beans from '../icons/beans.svg'
+
 import styled from 'styled-components';
 import shortid from "shortid";
 
