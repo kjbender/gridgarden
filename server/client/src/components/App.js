@@ -19,9 +19,4 @@ const App = () => {
   )
 };
 
-// function mapStateToProps(state) {
-//   return { zone: state.zone }
-// };
-//export default withRouter(connect(mapStateToProps)(App));
-
 export default withRouter(connect()(App));

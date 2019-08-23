@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { fetchTransformedPlot } from "../actions";
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+//import { makeStyles } from '@material-ui/core/styles';
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import onion from '../icons/onion.svg'
@@ -11,6 +14,17 @@ import tomato from '../icons/tomato.svg'
 import beans from '../icons/beans.svg'
 import styled from 'styled-components';
 import shortid from "shortid";
+
+// const useStyles = makeStyles(theme => ({
+//   rootPlot: {
+//     flexGrow: 1,
+//   },
+//   paper: {
+//     padding: theme.spacing(0),
+//     textAlign: 'center',
+//     color: theme.palette.text.secondary,
+//   },
+// }));
 
 const grid = 8;
 const Avatar = styled.img`
@@ -36,14 +50,26 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "grey" : "lightgrey",
   padding: grid,
-  width: 100,
+  width: 104,
   height: 104,
 });
 const getTrayStyle = isDraggingOver => ({
   background: isDraggingOver ? "black" : "grey",
   padding: grid,
-  width: 100,
-  minHeight: 500,
+  display: 'flex',
+  overflow: 'auto'
+});
+const getTrayItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: "none",
+  padding: grid * 2,
+  margin: `0 ${grid}px 0 0`,
+  borderRadius: '50%',
+  // change background colour if dragging
+  background: isDragging ? "lightblue" : "white",
+
+  // styles we need to apply on draggables
+  ...draggableStyle
 });
 
 const PLANTS = {
@@ -104,7 +130,7 @@ class Garden extends Component {
     if (this.props.transformedPlot) {
       return this.props.transformedPlot.map(function (row) {
         return row.map(function (cell) {
-          return (<p key={shortid.generate()}>`{cell}`</p>)
+          return (<span key={shortid.generate()}>`{cell}`</span>)
         })
       })
     }
@@ -231,12 +257,14 @@ class Garden extends Component {
   };
 
   render() {
+
     return (
       <Grid container spacing={1}>
         <Grid item >{this.renderTransformedPlot()}</Grid>
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <Grid item key='dropTray'>
-            <Droppable droppableId={'tray'} isDropDisabled={false}>
+          <Grid item key='dropTray' xs={12}>
+          <Paper> 
+            <Droppable droppableId={'tray'} isDropDisabled={false} direction="horizontal">
               {(provided, snapshot) => (
                 <div
                   ref={provided.innerRef}
@@ -249,7 +277,7 @@ class Garden extends Component {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={getItemStyle(
+                          style={getTrayItemStyle(
                             snapshot.isDragging,
                             provided.draggableProps.style
                           )}
@@ -261,9 +289,10 @@ class Garden extends Component {
                 </div>
               )}
             </Droppable>
+            </Paper> 
           </Grid>
 
-          <Grid item key='drop0'>
+          <Grid item key='drop0' xs={4}>
             <Grid item key='drop00'>
               <Droppable droppableId={'droppable00'} isDropDisabled={this.state.dropDisabled00}>
                 {(provided, snapshot) => (
@@ -292,7 +321,7 @@ class Garden extends Component {
             </Grid>
           </Grid>
 
-          <Grid item key='drop1'>
+          <Grid item key='drop1' xs={4}>
             <Grid item key='drop01'>
               <Droppable droppableId={'droppable01'} isDropDisabled={this.state.dropDisabled01}>
                 {(provided, snapshot) => (
@@ -320,7 +349,10 @@ class Garden extends Component {
               </Droppable>
             </Grid>
           </Grid>
+          
+          <Grid item key='drop2' xs={4}>
 
+          </Grid>
         </DragDropContext>
       </Grid>
     );

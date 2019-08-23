@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 //import styled from 'styled-components';
 import { connect } from "react-redux";
-import RowPlant from './Plant';
+import Plant from './Plant';
 
 const grid = 8;
 
@@ -94,7 +94,7 @@ class Row extends Component {
               style={getListStyle(snapshot.isDraggingOver)}
             >
               {this.state.items.map((item, index) => (
-                <RowPlant key={item.id} item={item} index={index} />
+                <Plant key={item.id} item={item} index={index} />
               ))}
               {provided.placeholder}
             </div>

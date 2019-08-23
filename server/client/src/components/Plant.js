@@ -25,7 +25,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   ...draggableStyle
 });
 
-class RowPlant extends Component {
+class Plant extends Component {
 
   render() {
     const { index, item } = this.props;
@@ -53,5 +53,5 @@ class RowPlant extends Component {
 //   plant: state.plantsById[ownProps.plantId]
 // });
 
-export default connect()(RowPlant);
+export default connect()(Plant);
 

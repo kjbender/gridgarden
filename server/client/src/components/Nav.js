@@ -15,17 +15,19 @@ const Avatar = styled.img`
   margin-right: 0px;
 `;
 
+// zIndex: 1,
+// overflow: 'auto',
+// position: 'relative',
+// display: 'flex',
+// width: '100%',
+// zIndex: theme.zIndex.drawer + 1,
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    zIndex: 1,
-    overflow: 'auto',
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
+ 
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
   },
   toolbar: theme.mixins.toolbar,
   content: {
@@ -34,26 +36,28 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    margin: theme.spacing(2)
   },
   icon: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0),
+    padding: theme.spacing(1)
   },
 }));
 
 function Nav(props) {
   const { children } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  //const theme = useTheme();
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
+        <Avatar src={blueberry} alt="" />
           <Typography variant="h6" noWrap className={classes.title}>
              Grid Garden
           </Typography>
-          <Avatar src={blueberry} alt="" />
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
