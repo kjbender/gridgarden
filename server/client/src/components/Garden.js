@@ -15,16 +15,14 @@ import beans from '../icons/beans.svg'
 import styled from 'styled-components';
 import shortid from "shortid";
 
-// const useStyles = makeStyles(theme => ({
-//   rootPlot: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(0),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary,
-//   },
-// }));
+
+// index, itemId, icon, name : props for Plant 
+// PLANTS[item].id   shortid.generate()
+import Plant from './Plant';
+// <Plant index={index} icon={ICONS[item]} name={this.props.plants[item].name} itemId={shortid.generate()} /> 
+
+
+const ICONS = ['', tomato, corn, beans, onion, carrot]; 
 
 const grid = 8;
 const Avatar = styled.img`
@@ -168,6 +166,16 @@ class Garden extends Component {
     }
   }
 
+  renderTrayPlants(trayArray) {
+    const { plants } = this.props;
+    if (this.props.plants) {
+      let newShortId = shortid.generate(); 
+      return trayArray.map((item, index) => (
+        <Plant index={index} icon={ICONS[item]} name={PLANTS[item].name} itemId={PLANTS[item].id} key={index} />
+      )); 
+    }
+  }
+
   state = {
     tray: [1, 2, 3, 4, 5],
     row0col0: [],
@@ -270,21 +278,7 @@ class Garden extends Component {
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   style={getTrayStyle(snapshot.isDraggingOver)}>
-                  {this.state.tray.map((item, index) => (
-                    <Draggable draggableId={PLANTS[item].id} index={index} key={PLANTS[item].id}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getTrayItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
-                        ><Avatar src={PLANTS[item].icon} alt="" /></div>
-                      )}
-                    </Draggable>
-                  ))}
+                  {this.renderTrayPlants(this.state.tray)}
                   {provided.placeholder}
                 </div>
               )}
@@ -292,7 +286,7 @@ class Garden extends Component {
             </Paper> 
           </Grid>
 
-          <Grid item key='drop0' xs={4}>
+          <Grid item key='drop0'>
             <Grid item key='drop00'>
               <Droppable droppableId={'droppable00'} isDropDisabled={this.state.dropDisabled00}>
                 {(provided, snapshot) => (
@@ -321,7 +315,7 @@ class Garden extends Component {
             </Grid>
           </Grid>
 
-          <Grid item key='drop1' xs={4}>
+          <Grid item key='drop1'>
             <Grid item key='drop01'>
               <Droppable droppableId={'droppable01'} isDropDisabled={this.state.dropDisabled01}>
                 {(provided, snapshot) => (
@@ -349,10 +343,6 @@ class Garden extends Component {
               </Droppable>
             </Grid>
           </Grid>
-          
-          <Grid item key='drop2' xs={4}>
-
-          </Grid>
         </DragDropContext>
       </Grid>
     );
@@ -361,7 +351,8 @@ class Garden extends Component {
 
 function mapStateToProps(state) {
   return {
-    transformedPlot: state.transformedPlot
+    transformedPlot: state.transformedPlot,
+    plants: state.plants 
   };
 }
 

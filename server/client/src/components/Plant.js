@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
-import blueberry from '../icons/blueberry.svg'
 import styled from 'styled-components'; 
 
 const grid = 8;
@@ -13,26 +12,20 @@ const Avatar = styled.img`
 `;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
   userSelect: "none",
   padding: grid * 2,
   margin: `0 ${grid}px 0 0`,
   borderRadius: '50%',
-  // change background colour if dragging
   background: isDragging ? "lightblue" : "white",
-
-  // styles we need to apply on draggables
   ...draggableStyle
 });
 
 class Plant extends Component {
-
   render() {
-    const { index, item } = this.props;
-    //const { isModalOpen } = this.state;
+    const { index, itemId, icon, name } = this.props;
 
     return (
-      <Draggable draggableId={item.id} index={index}>
+      <Draggable draggableId={itemId} index={index} key={itemId}>
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
@@ -42,16 +35,11 @@ class Plant extends Component {
               snapshot.isDragging,
               provided.draggableProps.style
             )}
-          ><Avatar src={blueberry} alt="" /></div>
+          ><Avatar src={icon} alt={name} /></div>
         )}
       </Draggable>
     );
   }
 }
 
-// const mapStateToProps = (state, ownProps) => ({
-//   plant: state.plantsById[ownProps.plantId]
-// });
-
 export default connect()(Plant);
-

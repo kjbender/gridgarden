@@ -7,12 +7,12 @@ var shortid = require("shortid");
 // const beans = require('../client/src/icons/beans.svg');
 
 const PLANTS = {
-  0: { id: shortid.generate(), matrixIndex: 0, icon: '' },
-  1: { id: 'Tomatoes', matrixIndex: 1, icon: 'tomato' },
-  2: { id: 'Corn', matrixIndex: 2, icon: 'corn' },
-  3: { id: 'Beans', matrixIndex: 3, icon: 'beans' },
-  4: { id: 'Onion', matrixIndex: 4, icon: 'onion' },
-  5: { id: 'Carrots', matrixIndex: 5, icon: 'carrot' }
+  0: { id: shortid.generate(), name: '', matrixIndex: 0, icon: '' },
+  1: { id: shortid.generate(), name: 'Tomatoes', matrixIndex: 1, icon: 'tomato' },
+  2: { id: shortid.generate(), name: 'Corn', matrixIndex: 2, icon: 'corn' },
+  3: { id: shortid.generate(), name: 'Beans', matrixIndex: 3, icon: 'beans' },
+  4: { id: shortid.generate(), name: 'Onion', matrixIndex: 4, icon: 'onion' },
+  5: { id: shortid.generate(), name: 'Carrots', matrixIndex: 5, icon: 'carrot' }
 }; 
 
 exports.getPlants = function(req, res) {
