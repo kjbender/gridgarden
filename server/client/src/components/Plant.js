@@ -12,6 +12,9 @@ const Avatar = styled.img`
   margin-left: ${grid/2}px;
 `;
 
+// borderColor: 'red', 
+// borderRight: `solid 2px`, 
+
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
   padding: grid * 2,

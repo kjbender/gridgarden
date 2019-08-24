@@ -51,7 +51,8 @@ const getTrayStyle = isDraggingOver => ({
   padding: grid,
   display: 'flex',
   overflow: 'auto',
-  minHeight: 104
+  minHeight: 104,
+  justify: "center"
 });
 
 // reorder the result when item is dropped on list of origin
@@ -226,7 +227,7 @@ class GardenBed extends Component {
 
   render() {
     return (
-      <Grid container spacing={1}>
+      <Grid container spacing={1} justify="center">
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Grid item key='dropTray' xs={12}>
             <Droppable droppableId={'tray'} direction="horizontal">
