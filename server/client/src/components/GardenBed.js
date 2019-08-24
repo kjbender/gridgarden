@@ -93,7 +93,7 @@ class GardenBed extends Component {
       droppable22: [],
       plot: [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     };
-    this.getListNameFromDim = this.getListNameFromDim.bind(this);
+    //this.getListNameFromDim = this.getListNameFromDim.bind(this);
   }
 
   droppableArray = [
@@ -125,7 +125,7 @@ class GardenBed extends Component {
             let dropId = array[indexC][indexR];
             let isDropDis = !!this.state[dropId].length;
             return (
-              <Grid item key={colRowKey}>
+              <Grid item key={colRowKey} style={{marginBottom: '8px'}}>
                 <Square dropId={dropId} isDropDis={isDropDis}>
                   {this.renderCell(dropId, isDropDis, indexC, indexR)}
                 </Square>
@@ -149,7 +149,7 @@ class GardenBed extends Component {
         let plant = Math.abs(this.props.transformedPlot[row][col]);
         return (
           <SuggestionDiv>
-            <Avatar src={PLANTS[plant].icon} alt={PLANTS[plant].name} />
+            <Avatar src={PLANTS[plant].icon} alt={PLANTS[plant].name} style={{opacity: '0.5'}}/>
           </SuggestionDiv>
         )
       }
@@ -168,7 +168,7 @@ class GardenBed extends Component {
   }
 
   onDragEnd = result => {
-    console.log(result);
+    //console.log(result);
     const { source, destination } = result;
 
     // dragged item is dropped outside the list (no changes)
@@ -194,11 +194,11 @@ class GardenBed extends Component {
         source,
         destination
       );
-      console.log(result); 
+      //console.log(result); 
       const listNames = Object.keys(result); 
       let first = listNames[0];
       let second = listNames[1];
-      console.log(listNames);
+      //console.log(listNames);
       let firstArray = result[first];
       let secondArray = result[second]; 
 
@@ -213,7 +213,7 @@ class GardenBed extends Component {
         let dims = this.getDimFromListName(destination.droppableId);
         plotUp[dims[0]][dims[1]] = result[destination.droppableId][0].plantId; 
       }
-      console.log('component', plotUp);
+      //console.log('component', plotUp);
       this.props.fetchTransformedPlot(plotUp);
         // plot: plotUp 
 

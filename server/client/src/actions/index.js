@@ -12,7 +12,7 @@ export const fetchZone = (zipcode) => dispatch => {
 };
 
 export const fetchTransformedPlot = (data) => dispatch => {
-  console.log('action', data);
+  //console.log('action', data);
   axios.post('/api/plot', data)
     .then(function (response) {
       dispatch({ type: FETCH_TRANSFORMED_PLOT, payload: response.data });

@@ -85,6 +85,9 @@ const checkMove = function(plot, move) {
 //   res.writeHead(400, "error message")
 //   return res.end()
 // } else {
+function getRandomInt(max) { 
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 exports.transformPlot = function(req, res) {
 
@@ -103,11 +106,13 @@ exports.transformPlot = function(req, res) {
   let transformedGarden = checkArray.map(function(row) {
     return row.map(function(cell) {
       // if cell is empty, returning cell.suggestionIntersection gives the array of options
+      let numberOfSuggestions = cell.suggestionIntersection.length; 
+      let randomIndex = getRandomInt(numberOfSuggestions); 
       // consider just including one for ease of use (?)
-      return (cell.plant > 0 || cell.suggestionIntersection.length === 0)? cell.plant: cell.suggestionIntersection[0]; 
+      return (cell.plant > 0 || numberOfSuggestions === 0)? cell.plant: cell.suggestionIntersection[randomIndex]; 
     })
   })
 
-  console.log('server', givenGarden); 
+  //console.log('server', givenGarden); 
   res.send({givenGarden, transformedGarden, checkArray}); 
 }
