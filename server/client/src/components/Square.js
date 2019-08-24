@@ -9,6 +9,7 @@ const getListStyle = isDraggingOver => ({
   padding: grid,
   width: 104,
   height: 104,
+  display: 'flex',
 });
 
 class Square extends Component {

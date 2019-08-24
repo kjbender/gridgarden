@@ -8,7 +8,8 @@ const grid = 8;
 const Avatar = styled.img`
   width: 50px;
   height: 50px;
-  margin-right: ${grid}px;
+  margin-right: ${grid/2}px;
+  margin-left: ${grid/2}px;
 `;
 
 const getItemStyle = (isDragging, draggableStyle) => ({

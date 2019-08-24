@@ -88,7 +88,7 @@ class GardenBed extends Component {
       droppable20: [],
       droppable21: [],
       droppable22: [],
-      plot: []
+      plot: [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     };
     this.getListNameFromDim = this.getListNameFromDim.bind(this);
   }
@@ -121,7 +121,6 @@ class GardenBed extends Component {
             let colRowKey = `drop${indexC}${indexR}`;
             let dropId = array[indexC][indexR];
             let isDropDis = !!this.state[dropId].length;
-            console.log(dropId, isDropDis);
             return (
               <Grid item key={colRowKey}>
                 <Square dropId={dropId} isDropDis={isDropDis}>
@@ -136,7 +135,7 @@ class GardenBed extends Component {
   }
 
   renderCell(dropId, isDropDis, row, col) {
-    if (isDropDis === true) {
+    if (isDropDis) {
       return (
         this.state[dropId].map((item, index) => (
           <Plant index={index} icon={ICONS[item.plantId]} name={PLANTS[item.plantId].name} itemId={item._id} key={item.label} />
@@ -162,7 +161,7 @@ class GardenBed extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchTransformedPlot([[0, 0, 0], [0, 0, 0], [0, 0, 0]]); 
+    this.props.fetchTransformedPlot(this.state.plot); 
   }
 
   onDragEnd = result => {
@@ -205,10 +204,10 @@ class GardenBed extends Component {
       console.log('component', plotUp);
       //this.props.fetchTransformedPlot(plotUp);
         // plot: plotUp 
-      // TO DO: fix state setting 
-      this.setState({
-        first: firstArray,
-        second: secondArray
+
+        this.setState({
+        [first]: firstArray,
+        [second]: secondArray
       });
     }
   }
