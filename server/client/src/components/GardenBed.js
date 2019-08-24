@@ -50,7 +50,8 @@ const getTrayStyle = isDraggingOver => ({
   background: isDraggingOver ? "black" : "grey",
   padding: grid,
   display: 'flex',
-  overflow: 'auto'
+  overflow: 'auto',
+  minHeight: 104
 });
 
 // reorder the result when item is dropped on list of origin
@@ -72,6 +73,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   result[droppableDestination.droppableId] = destClone;
   return result;
 };
+const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
 
 class GardenBed extends Component {
   constructor(props) {
@@ -191,6 +193,7 @@ class GardenBed extends Component {
         source,
         destination
       );
+      console.log(result); 
       const listNames = Object.keys(result); 
       let first = listNames[0];
       let second = listNames[1];
@@ -200,14 +203,23 @@ class GardenBed extends Component {
 
       // get dimensions for whichever non-tray droppables are involved
       // build updated 'plot' and fetch transformation 
-      let plotUp = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; 
+      let plotUp = clone(this.state.plot);  
+      if (source.droppableId !== 'tray') {
+        let dims = this.getDimFromListName(source.droppableId);
+        plotUp[dims[0]][dims[1]] = 0; 
+      }
+      if (destination.droppableId !== 'tray') {
+        let dims = this.getDimFromListName(destination.droppableId);
+        plotUp[dims[0]][dims[1]] = result[destination.droppableId][0].plantId; 
+      }
       console.log('component', plotUp);
-      //this.props.fetchTransformedPlot(plotUp);
+      this.props.fetchTransformedPlot(plotUp);
         // plot: plotUp 
 
         this.setState({
         [first]: firstArray,
-        [second]: secondArray
+        [second]: secondArray, 
+        plot: plotUp
       });
     }
   }
