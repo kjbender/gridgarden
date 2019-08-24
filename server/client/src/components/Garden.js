@@ -202,6 +202,7 @@ class Garden extends Component {
   getList = id => this.state[this.id2List[id]];
 
   onDragEnd = result => {
+    console.log(result);
     const { source, destination } = result;
 
     // dragged item is dropped outside the list (no changes)
@@ -229,6 +230,7 @@ class Garden extends Component {
         source,
         destination
       );
+      console.log(Object.keys(result));
 
       let trayUp = (result.tray) ? result.tray : this.state.tray;
       let row0col0Up = (result.droppable00) ? result.droppable00 : this.state.row0col0;
@@ -289,7 +291,7 @@ class Garden extends Component {
 
           <Grid item key='drop0'>
             <Grid item key='drop00'>
-              <Droppable droppableId={'droppable00'} isDropDisabled={this.state.dropDisabled00}>
+              <Droppable droppableId={'droppable00'} isDropDisabled={!!(this.state.row0col0.length)}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
