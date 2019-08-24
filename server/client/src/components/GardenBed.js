@@ -10,21 +10,56 @@ import Square from './Square';
 import Plant from './Plant';
 import styled from 'styled-components';
 
-import onion from '../icons/onion.svg'
-import corn from '../icons/corn.svg'
-import carrot from '../icons/carrot.svg'
 import tomato from '../icons/tomato.svg'
+import corn from '../icons/corn.svg'
 import beans from '../icons/beans.svg'
-const ICONS = ['', tomato, corn, beans, onion, carrot];
+import onion from '../icons/onion.svg'
+import carrot from '../icons/carrot.svg'
+import broccoli from '../icons/broccoli.svg'
+import chili from '../icons/chili.svg'
+import eggplant from '../icons/eggplant.svg'
+import peas from '../icons/peas.svg'
+import pepper from '../icons/pepper.svg'
+import radish from '../icons/radish.svg'
+import garlic from '../icons/garlic.svg'
+import pumpkin from '../icons/pumpkin.svg'
+import lettuce from '../icons/lettuce.svg'
+import potato from '../icons/potato.svg'
+import redonion from '../icons/redonion.svg'
+import cucumber from '../icons/cucumber.svg'
+import cauliflower from '../icons/cauliflower.svg'
+import asparagus from '../icons/asparagus.svg'
+import kale from '../icons/kale.svg'
+import chives from '../icons/chives.svg'
+
+const ICONS = ['', tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, redonion, cucumber, cauliflower, asparagus, kale, chives];
+// tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, red onion, cucumber, cauliflower, asparagus, kale, chives
 
 const PLANTS = {
   0: { name: '', matrixIndex: 0, icon: '' },
-  1: { name: 'Tomatoes', matrixIndex: 1, icon: tomato },
+  1: { name: 'Tomato', matrixIndex: 1, icon: tomato },
   2: { name: 'Corn', matrixIndex: 2, icon: corn },
   3: { name: 'Beans', matrixIndex: 3, icon: beans },
   4: { name: 'Onion', matrixIndex: 4, icon: onion },
-  5: { name: 'Carrots', matrixIndex: 5, icon: carrot }
+  5: { name: 'Carrot', matrixIndex: 5, icon: carrot },
+  6: { name: 'Broccoli', matrixIndex: 6, icon: broccoli },
+  7: { name: 'Chili', matrixIndex: 7, icon: chili },
+  8: { name: 'Eggplant', matrixIndex: 8, icon: eggplant },
+  9: { name: 'Peas', matrixIndex: 9, icon: peas },
+  10: { name: 'Pepper', matrixIndex: 10, icon: pepper },
+  11: { name: 'Radish', matrixIndex: 11, icon: radish },
+  12: { name: 'Garlic', matrixIndex: 12, icon: garlic },
+  13: { name: 'Pumpkin', matrixIndex: 13, icon: pumpkin },
+  14: { name: 'Lettuce', matrixIndex: 14, icon: lettuce },
+  15: { name: 'Potato', matrixIndex: 15, icon: potato },
+  16: { name: 'Red onion', matrixIndex: 16, icon: redonion },
+  17: { name: 'Cucumber', matrixIndex: 17, icon: cucumber },
+  18: { name: 'Cauliflower', matrixIndex: 18, icon: cauliflower },
+  19: { name: 'Asparagus', matrixIndex: 19, icon: asparagus },
+  20: { name: 'Kale', matrixIndex: 20, icon: kale },
+  21: { name: 'Chives', matrixIndex: 21, icon: chives }
 }
+
 const grid = 8;
 // shows suggestions where applicable 
 const SuggestionDiv = styled.div`
@@ -43,8 +78,8 @@ const Avatar = styled.img`
 const getTrayItems = number =>
   Array.from({ length: number }, (v, k) => k).map(k => ({
     _id: shortid.generate(),
-    plantId: k+1,
-    label: `plant-${k+1}`
+    plantId: k + 1,
+    label: `plant-${k + 1}`
   }));
 const getTrayStyle = isDraggingOver => ({
   background: isDraggingOver ? "black" : "grey",
@@ -80,8 +115,8 @@ class GardenBed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 5,
-      tray: getTrayItems(5),
+      count: 21,
+      tray: getTrayItems(21),
       droppable00: [],
       droppable01: [],
       droppable02: [],
@@ -116,16 +151,16 @@ class GardenBed extends Component {
       ['droppable10', 'droppable11', 'droppable12'],
       ['droppable20', 'droppable21', 'droppable22']
     ];
-    return array.map( (row, indexR) => {
+    return array.map((row, indexR) => {
       let colKey = `drop${indexR}`;
       return (
         <Grid item key={colKey}>
-          {row.map( (col, indexC) => {
+          {row.map((col, indexC) => {
             let colRowKey = `drop${indexC}${indexR}`;
             let dropId = array[indexC][indexR];
             let isDropDis = !!this.state[dropId].length;
             return (
-              <Grid item key={colRowKey} style={{marginBottom: '8px'}}>
+              <Grid item key={colRowKey} style={{ marginBottom: '8px' }}>
                 <Square dropId={dropId} isDropDis={isDropDis}>
                   {this.renderCell(dropId, isDropDis, indexC, indexR)}
                 </Square>
@@ -149,7 +184,7 @@ class GardenBed extends Component {
         let plant = Math.abs(this.props.transformedPlot[row][col]);
         return (
           <SuggestionDiv>
-            <Avatar src={PLANTS[plant].icon} alt={PLANTS[plant].name} style={{opacity: '0.5'}}/>
+            <Avatar src={PLANTS[plant].icon} alt={PLANTS[plant].name} style={{ opacity: '0.5' }} />
           </SuggestionDiv>
         )
       }
@@ -164,7 +199,7 @@ class GardenBed extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchTransformedPlot(this.state.plot); 
+    this.props.fetchTransformedPlot(this.state.plot);
   }
 
   onDragEnd = result => {
@@ -195,31 +230,31 @@ class GardenBed extends Component {
         destination
       );
       //console.log(result); 
-      const listNames = Object.keys(result); 
+      const listNames = Object.keys(result);
       let first = listNames[0];
       let second = listNames[1];
       //console.log(listNames);
       let firstArray = result[first];
-      let secondArray = result[second]; 
+      let secondArray = result[second];
 
       // get dimensions for whichever non-tray droppables are involved
       // build updated 'plot' and fetch transformation 
-      let plotUp = clone(this.state.plot);  
+      let plotUp = clone(this.state.plot);
       if (source.droppableId !== 'tray') {
         let dims = this.getDimFromListName(source.droppableId);
-        plotUp[dims[0]][dims[1]] = 0; 
+        plotUp[dims[0]][dims[1]] = 0;
       }
       if (destination.droppableId !== 'tray') {
         let dims = this.getDimFromListName(destination.droppableId);
-        plotUp[dims[0]][dims[1]] = result[destination.droppableId][0].plantId; 
+        plotUp[dims[0]][dims[1]] = result[destination.droppableId][0].plantId;
       }
       //console.log('component', plotUp);
       this.props.fetchTransformedPlot(plotUp);
-        // plot: plotUp 
+      // plot: plotUp 
 
-        this.setState({
+      this.setState({
         [first]: firstArray,
-        [second]: secondArray, 
+        [second]: secondArray,
         plot: plotUp
       });
     }
