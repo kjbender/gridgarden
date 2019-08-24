@@ -18,6 +18,7 @@ import beans from '../icons/beans.svg'
 const ICONS = ['', tomato, corn, beans, onion, carrot];
 
 const PLANTS = {
+  0: { name: '', matrixIndex: 0, icon: '' },
   1: { name: 'Tomatoes', matrixIndex: 1, icon: tomato },
   2: { name: 'Corn', matrixIndex: 2, icon: corn },
   3: { name: 'Beans', matrixIndex: 3, icon: beans },
@@ -42,8 +43,8 @@ const Avatar = styled.img`
 const getTrayItems = number =>
   Array.from({ length: number }, (v, k) => k).map(k => ({
     _id: shortid.generate(),
-    plantId: k,
-    label: `plant-${k}`
+    plantId: k+1,
+    label: `plant-${k+1}`
   }));
 const getTrayStyle = isDraggingOver => ({
   background: isDraggingOver ? "black" : "grey",
@@ -107,14 +108,20 @@ class GardenBed extends Component {
   // drop0 [drop00, drop10, drop20] (first col)
   // drop1 [drop01, drop11, drop21] 
   renderPlotGrid() {
-    return this.droppableArray.map(function (row, indexR) {
+    const array = [
+      ['droppable00', 'droppable01', 'droppable02'],
+      ['droppable10', 'droppable11', 'droppable12'],
+      ['droppable20', 'droppable21', 'droppable22']
+    ];
+    return array.map( (row, indexR) => {
       let colKey = `drop${indexR}`;
       return (
         <Grid item key={colKey}>
-          {row.map(function (col, indexC) {
+          {row.map( (col, indexC) => {
             let colRowKey = `drop${indexC}${indexR}`;
-            let dropId = this.getListNameFromDim(indexC, indexR);
+            let dropId = array[indexC][indexR];
             let isDropDis = !!this.state[dropId].length;
+            console.log(dropId, isDropDis);
             return (
               <Grid item key={colRowKey}>
                 <Square dropId={dropId} isDropDis={isDropDis}>
@@ -129,7 +136,7 @@ class GardenBed extends Component {
   }
 
   renderCell(dropId, isDropDis, row, col) {
-    if (isDropDis) {
+    if (isDropDis === true) {
       return (
         this.state[dropId].map((item, index) => (
           <Plant index={index} icon={ICONS[item.plantId]} name={PLANTS[item.plantId].name} itemId={item._id} key={item.label} />
@@ -196,12 +203,12 @@ class GardenBed extends Component {
       // build updated 'plot' and fetch transformation 
       let plotUp = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; 
       console.log('component', plotUp);
-      this.props.fetchTransformedPlot(plotUp);
-
+      //this.props.fetchTransformedPlot(plotUp);
+        // plot: plotUp 
+      // TO DO: fix state setting 
       this.setState({
         first: firstArray,
-        second: secondArray,
-        plot: plotUp
+        second: secondArray
       });
     }
   }
@@ -229,7 +236,7 @@ class GardenBed extends Component {
     )
   }
 }
-
+// {this.renderPlotGrid()}
 function mapStateToProps(state) {
   return {
     transformedPlot: state.transformedPlot,
