@@ -220,7 +220,7 @@ class GardenBed extends Component {
     return (
       <Grid container spacing={1} justify="center">
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <Grid item key='dropTray' xs={12}>
+          <Grid item key='dropTray' xs={12} style={{borderStyle: 'solid', borderRadius: '5px', padding: 0, marginBottom: '4px', marginTop: '8px', borderColor: "#795548"}}>
             <Droppable droppableId={'tray'} direction="horizontal">
               {(provided, snapshot) => (
                 <div
