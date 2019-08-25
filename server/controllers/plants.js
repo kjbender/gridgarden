@@ -33,11 +33,7 @@ const newPLANTS = {
   "14": { "name": "lettuce", "matrixIndex": 14, "id": shortid.generate() },
   "15": { "name": "potato", "matrixIndex": 15, "id": shortid.generate() },
   "16": { "name": "red onion", "matrixIndex": 16, "id": shortid.generate() },
-  "17": { "name": "cucumber", "matrixIndex": 17, "id": shortid.generate() },
-  "18": { "name": "cauliflower", "matrixIndex": 18, "id": shortid.generate() },
-  "19": { "name": "asparagus", "matrixIndex": 19, "id": shortid.generate() },
-  "20": { "name": "kale", "matrixIndex": 20, "id": shortid.generate() },
-  "21": { "name": "chives", "matrixIndex": 21, "id": shortid.generate() }
+  "17": { "name": "cucumber", "matrixIndex": 17, "id": shortid.generate() }
 }
 
 exports.getPlants = function (req, res) {

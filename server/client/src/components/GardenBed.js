@@ -27,13 +27,9 @@ import lettuce from '../icons/lettuce.svg'
 import potato from '../icons/potato.svg'
 import redonion from '../icons/redonion.svg'
 import cucumber from '../icons/cucumber.svg'
-import cauliflower from '../icons/cauliflower.svg'
-import asparagus from '../icons/asparagus.svg'
-import kale from '../icons/kale.svg'
-import chives from '../icons/chives.svg'
 
-const ICONS = ['', tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, redonion, cucumber, cauliflower, asparagus, kale, chives];
-// tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, red onion, cucumber, cauliflower, asparagus, kale, chives
+const ICONS = ['', tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, redonion, cucumber];
+// tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, red onion, cucumber
 
 const PLANTS = {
   0: { name: '', matrixIndex: 0, icon: '' },
@@ -53,11 +49,7 @@ const PLANTS = {
   14: { name: 'Lettuce', matrixIndex: 14, icon: lettuce },
   15: { name: 'Potato', matrixIndex: 15, icon: potato },
   16: { name: 'Red onion', matrixIndex: 16, icon: redonion },
-  17: { name: 'Cucumber', matrixIndex: 17, icon: cucumber },
-  18: { name: 'Cauliflower', matrixIndex: 18, icon: cauliflower },
-  19: { name: 'Asparagus', matrixIndex: 19, icon: asparagus },
-  20: { name: 'Kale', matrixIndex: 20, icon: kale },
-  21: { name: 'Chives', matrixIndex: 21, icon: chives }
+  17: { name: 'Cucumber', matrixIndex: 17, icon: cucumber }
 }
 
 const grid = 8;
@@ -115,8 +107,8 @@ class GardenBed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 21,
-      tray: getTrayItems(21),
+      count: 17,
+      tray: getTrayItems(17),
       droppable00: [],
       droppable01: [],
       droppable02: [],
