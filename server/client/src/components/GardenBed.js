@@ -10,47 +10,50 @@ import Square from './Square';
 import Plant from './Plant';
 import styled from 'styled-components';
 
-import tomato from '../icons/tomato.svg'
-import corn from '../icons/corn.svg'
-import beans from '../icons/beans.svg'
-import onion from '../icons/onion.svg'
-import carrot from '../icons/carrot.svg'
-import broccoli from '../icons/broccoli.svg'
-import chili from '../icons/chili.svg'
-import eggplant from '../icons/eggplant.svg'
-import peas from '../icons/peas.svg'
-import pepper from '../icons/pepper.svg'
-import radish from '../icons/radish.svg'
-import garlic from '../icons/garlic.svg'
-import pumpkin from '../icons/pumpkin.svg'
-import lettuce from '../icons/lettuce.svg'
-import potato from '../icons/potato.svg'
-import redonion from '../icons/redonion.svg'
-import cucumber from '../icons/cucumber.svg'
+//import { default as icons } from "../icons"
+import { PLANTS } from "../data"
+//console.log(icons)
+// import tomato from '../icons/tomato.svg'
+// import corn from '../icons/corn.svg'
+// import beans from '../icons/beans.svg'
+// import onion from '../icons/onion.svg'
+// import carrot from '../icons/carrot.svg'
+// import broccoli from '../icons/broccoli.svg'
+// import chili from '../icons/chili.svg'
+// import eggplant from '../icons/eggplant.svg'
+// import peas from '../icons/peas.svg'
+// import pepper from '../icons/pepper.svg'
+// import radish from '../icons/radish.svg'
+// import garlic from '../icons/garlic.svg'
+// import pumpkin from '../icons/pumpkin.svg'
+// import lettuce from '../icons/lettuce.svg'
+// import potato from '../icons/potato.svg'
+// import redonion from '../icons/redonion.svg'
+// import cucumber from '../icons/cucumber.svg'
 
-const ICONS = ['', tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, redonion, cucumber];
-// tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, red onion, cucumber
+// const ICONS = ['', tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, redonion, cucumber];
+// // tomato, corn, beans, onion, carrot, broccoli, chili, eggplant, peas, pepper, radish, garlic, pumpkin, lettuce, potato, red onion, cucumber
 
-const PLANTS = {
-  0: { name: '', matrixIndex: 0, icon: '' },
-  1: { name: 'Tomato', matrixIndex: 1, icon: tomato },
-  2: { name: 'Corn', matrixIndex: 2, icon: corn },
-  3: { name: 'Beans', matrixIndex: 3, icon: beans },
-  4: { name: 'Onion', matrixIndex: 4, icon: onion },
-  5: { name: 'Carrot', matrixIndex: 5, icon: carrot },
-  6: { name: 'Broccoli', matrixIndex: 6, icon: broccoli },
-  7: { name: 'Chili', matrixIndex: 7, icon: chili },
-  8: { name: 'Eggplant', matrixIndex: 8, icon: eggplant },
-  9: { name: 'Peas', matrixIndex: 9, icon: peas },
-  10: { name: 'Pepper', matrixIndex: 10, icon: pepper },
-  11: { name: 'Radish', matrixIndex: 11, icon: radish },
-  12: { name: 'Garlic', matrixIndex: 12, icon: garlic },
-  13: { name: 'Pumpkin', matrixIndex: 13, icon: pumpkin },
-  14: { name: 'Lettuce', matrixIndex: 14, icon: lettuce },
-  15: { name: 'Potato', matrixIndex: 15, icon: potato },
-  16: { name: 'Red onion', matrixIndex: 16, icon: redonion },
-  17: { name: 'Cucumber', matrixIndex: 17, icon: cucumber }
-}
+// const PLANTS = {
+//   0: { name: '', matrixIndex: 0, icon: '' },
+//   1: { name: 'Tomato', matrixIndex: 1, icon: tomato },
+//   2: { name: 'Corn', matrixIndex: 2, icon: corn },
+//   3: { name: 'Beans', matrixIndex: 3, icon: beans },
+//   4: { name: 'Onion', matrixIndex: 4, icon: onion },
+//   5: { name: 'Carrot', matrixIndex: 5, icon: carrot },
+//   6: { name: 'Broccoli', matrixIndex: 6, icon: broccoli },
+//   7: { name: 'Chili', matrixIndex: 7, icon: chili },
+//   8: { name: 'Eggplant', matrixIndex: 8, icon: eggplant },
+//   9: { name: 'Peas', matrixIndex: 9, icon: peas },
+//   10: { name: 'Pepper', matrixIndex: 10, icon: pepper },
+//   11: { name: 'Radish', matrixIndex: 11, icon: radish },
+//   12: { name: 'Garlic', matrixIndex: 12, icon: garlic },
+//   13: { name: 'Pumpkin', matrixIndex: 13, icon: pumpkin },
+//   14: { name: 'Lettuce', matrixIndex: 14, icon: lettuce },
+//   15: { name: 'Potato', matrixIndex: 15, icon: potato },
+//   16: { name: 'Red onion', matrixIndex: 16, icon: redonion },
+//   17: { name: 'Cucumber', matrixIndex: 17, icon: cucumber }
+// }
 
 const grid = 8;
 // shows suggestions where applicable 
@@ -168,7 +171,7 @@ class GardenBed extends Component {
     if (isDropDis) {
       return (
         this.state[dropId].map((item, index) => (
-          <Plant index={index} icon={ICONS[item.plantId]} name={PLANTS[item.plantId].name} itemId={item._id} key={item.label} />
+          <Plant index={index} icon={PLANTS[item.plantId].icon} name={PLANTS[item.plantId].name} itemId={item._id} key={item.label} />
         ))
       )
     } else if (this.props.transformedPlot.length !== 0) {
@@ -186,7 +189,7 @@ class GardenBed extends Component {
   // _id, plantId, label 
   renderTrayPlants(trayArray) {
     return trayArray.map((item, index) => (
-      <Plant index={index} icon={ICONS[item.plantId]} name={PLANTS[item.plantId].name} itemId={item._id} key={item.label} />
+      <Plant index={index} icon={PLANTS[item.plantId].icon} name={PLANTS[item.plantId].name} itemId={item._id} key={item.label} />
     ));
   }
 
