@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchZone, fetchPlants } from "../actions";
 import { withRouter } from 'react-router'
 import { bindActionCreators } from "redux";
-//import Garden from './Garden';
+import Schedule from './Schedule';
 import GardenBed from './GardenBed';
 
 class Home extends Component {
@@ -17,6 +17,7 @@ class Home extends Component {
     return (
       <Fragment>
         <GardenBed />
+        <Schedule />
       </Fragment>
     )
   }
