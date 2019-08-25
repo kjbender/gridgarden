@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
  
   },
   appBar: {
+    backgroundColor: '#283593'
   },
   toolbar: theme.mixins.toolbar,
   content: {

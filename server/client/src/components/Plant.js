@@ -20,7 +20,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   padding: grid * 2,
   margin: `0 ${grid}px 0 0`,
   borderRadius: '50%',
-  background: isDragging ? "lightblue" : "white",
+  background: isDragging ? "#c5cae9" : "white",
   ...draggableStyle
 });
 

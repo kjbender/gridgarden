@@ -5,6 +5,7 @@ import { withRouter } from 'react-router'
 import { bindActionCreators } from "redux";
 import Schedule from './Schedule';
 import GardenBed from './GardenBed';
+import { getZone, getPlants } from "../selectors"
 
 class Home extends Component {
 
@@ -24,7 +25,7 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  return { zone: state.zone, plants: state.plants }
+  return { zone: getZone(state), plants: getPlants(state) }
 };
 
 function mapDispatchToProps(dispatch) {

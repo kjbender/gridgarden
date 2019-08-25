@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-const plantList =  ["", "tomato","corn","beans","onion","carrot","broccoli","chili","eggplant","peas","pepper","radish","garlic","pumpkin","lettuce","potato","red onion","cucumber"]; 
+const plantList = ["", "tomato", "corn", "beans", "onion", "carrot", "broccoli", "chili", "eggplant", "peas", "pepper", "radish", "garlic", "pumpkin", "lettuce", "potato", "red onion", "cucumber"];
 
 
 //['', "Tomatoes", "Corn", "Beans", "Onion", "Carrots"]; 
@@ -19,25 +19,25 @@ const plantList =  ["", "tomato","corn","beans","onion","carrot","broccoli","chi
 // 
 
 const companionMatrix = [
-  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-  [0,-1,-1,0,1,1,-1,0,0,0,0,0,1,0,1,-1,1,-1],
-  [0,-1,0,1,0,1,0,0,0,1,-1,1,0,1,0,1,0,1],
-  [0,0,1,0,-1,1,-1,-1,1,1,-1,1,-1,1,1,1,-1,1],
-  [0,1,0,-1,0,1,1,1,0,-1,1,0,0,0,1,1,0,0],
-  [0,1,1,1,1,0,0,0,0,1,0,1,1,0,1,0,1,1],
-  [0,-1,0,-1,1,0,0,-1,0,0,-1,0,1,-1,-1,1,1,0],
-  [0,0,0,-1,1,0,-1,0,1,1,0,0,0,0,0,0,1,0],
-  [0,0,0,1,0,0,0,1,0,1,1,0,0,0,1,1,0,0],
-  [0,0,1,1,-1,1,0,1,1,0,1,1,-1,0,0,0,-1,1],
-  [0,0,-1,-1,1,0,-1,0,1,1,0,0,0,0,0,0,1,0],
-  [0,0,1,1,0,1,0,0,0,1,0,0,0,0,1,-1,0,1],
-  [0,1,0,-1,0,1,1,0,0,-1,0,0,0,0,1,0,0,0],
-  [0,0,1,1,0,0,-1,0,0,0,0,0,0,0,0,-1,0,0],
-  [0,1,0,1,1,1,-1,0,1,0,0,1,1,0,0,0,1,1],
-  [0,-1,1,1,1,0,1,0,1,0,0,-1,0,-1,0,0,1,-1],
-  [0,1,0,-1,0,1,1,1,0,-1,1,0,0,0,1,1,0,0],
-  [0,-1,1,1,0,1,0,0,0,1,0,1,0,0,1,-1,0,0]
-]; 
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, -1, -1, 0, 1, 1, -1, 0, 0, 0, 0, 0, 1, 0, 1, -1, 1, -1],
+  [0, -1, 0, 1, 0, 1, 0, 0, 0, 1, -1, 1, 0, 1, 0, 1, 0, 1],
+  [0, 0, 1, 0, -1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1],
+  [0, 1, 0, -1, 0, 1, 1, 1, 0, -1, 1, 0, 0, 0, 1, 1, 0, 0],
+  [0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1],
+  [0, -1, 0, -1, 1, 0, 0, -1, 0, 0, -1, 0, 1, -1, -1, 1, 1, 0],
+  [0, 0, 0, -1, 1, 0, -1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0],
+  [0, 0, 1, 1, -1, 1, 0, 1, 1, 0, 1, 1, -1, 0, 0, 0, -1, 1],
+  [0, 0, -1, -1, 1, 0, -1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, -1, 0, 1],
+  [0, 1, 0, -1, 0, 1, 1, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0],
+  [0, 0, 1, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0],
+  [0, 1, 0, 1, 1, 1, -1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1],
+  [0, -1, 1, 1, 1, 0, 1, 0, 1, 0, 0, -1, 0, -1, 0, 0, 1, -1],
+  [0, 1, 0, -1, 0, 1, 1, 1, 0, -1, 1, 0, 0, 0, 1, 1, 0, 0],
+  [0, -1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, -1, 0, 0]
+];
 
 // sample plots:
 // 0s represent empty cells; otherwise the number is the plant index  
@@ -45,102 +45,113 @@ const companionMatrix = [
 // [ [1, 2], [3, 4] ]
 // [ [0, 1], [2, 0] ]
 
-const makeMove = function(plot, move) {
+const makeMove = function (plot, move) {
   const row = move[0];
-  const col = move[1]; 
+  const col = move[1];
   const plant = move[2];
-  let newPlot = plot.map((x,indexX) => 
-    (indexX === row)? x.map((y,indexY) => (indexY === col)? plant: y) : x
+  let newPlot = plot.map((x, indexX) =>
+    (indexX === row) ? x.map((y, indexY) => (indexY === col) ? plant : y) : x
   )
-  return newPlot; 
+  return newPlot;
 }
 
-const checkMove = function(plot, move) {
+const checkMove = function (plot, move) {
 
   const row = move[0];
-  const col = move[1]; 
+  const col = move[1];
 
   // see what's around the planting space given in the move 
   // name these above/below/right/left and assign boolean value if conflict exists 
-  const plant = move[2];  
+  const plant = move[2];
   // get values around cell (assign -1 if outside of plot; handles cells on edges)
-  const above = (row === 0)? -1: plot[row-1][col];
-  const below = (row === plot.length - 1)? -1: plot[row+1][col];
-  const left = (col === 0)? -1: plot[row][col-1];
-  const right = (col === plot[0].length - 1)? -1: plot[row][col+1];
+  const above = (row === 0) ? -1 : plot[row - 1][col];
+  const below = (row === plot.length - 1) ? -1 : plot[row + 1][col];
+  const left = (col === 0) ? -1 : plot[row][col - 1];
+  const right = (col === plot[0].length - 1) ? -1 : plot[row][col + 1];
 
   // order cardinal directions in an array; loop through to find conflicts (add message if true)
-  let adjacentPlants = [above, below, left, right]; 
-  let messages = []; 
-  let conflicts = []; 
-  // this is done even if there is no plant in the cell (gives all empty strings/falses)
-  for (var adjPlant of adjacentPlants) {
-    // first check compatibility of plants in non-empty spaces 
-    if (adjPlant > 0 && companionMatrix[adjPlant][plant] < 0) {
-        messages.push(plantList[plant] + ' and ' + plantList[adjPlant] + ' may not grow well together.');
-        conflicts.push(true); 
-      } else {
-      messages.push(''); 
-      conflicts.push(false);
+  let adjacentPlants = [above, below, left, right];
+  let messages = [];
+  let conflicts = [];
+  // don't do the following if there is no plant in the cell 
+  if (plant > 0) {
+    for (var adjPlant of adjacentPlants) {
+      // first check compatibility of plants in non-empty spaces 
+      if (adjPlant > 0) {
+        if (companionMatrix[adjPlant][plant] < 0) {
+          messages.push(plantList[plant] + ' and ' + plantList[adjPlant] + ' may not grow well together');
+          conflicts.push(true);
+        } else {
+          //messages.push('');
+          conflicts.push(false);
+        }
+      } 
     }
   }
+  let conflictState = (conflicts.length === 0)? '': (conflicts.indexOf(true) !== -1)? true: false; 
 
   let suggestionSets = [];
   // only add to set if space is empty
-  if (plant === 0 ) {
+  if (plant === 0) {
     // check against adjacent plants and create lists of suggestions
-    for (var adjPlant of adjacentPlants) { 
+    for (var adjPlant of adjacentPlants) {
       // don't use adjacent empty cells (no useful information there)
       if (adjPlant > 0) {
-        let adjPlantSuggestions = []; 
+        let adjPlantSuggestions = [];
         for (var i = 0; i < companionMatrix[adjPlant].length; i++) {
           if (companionMatrix[adjPlant][i] === 1) {
             //adjPlantSuggestions.push(plantList[i])
             // return the negative of the plant (for display purposes on front end)
-            adjPlantSuggestions.push(-i); 
+            adjPlantSuggestions.push(-i);
           }
         }
-        suggestionSets.push(adjPlantSuggestions); 
+        suggestionSets.push(adjPlantSuggestions);
       }
     }
-  } 
-  let suggestionIntersection = _.intersection.apply(_, suggestionSets); 
+  }
+  let suggestionIntersection = _.intersection.apply(_, suggestionSets);
 
-  return {row, col, plant, above, below, left, right, adjacentPlants, conflicts, messages, suggestionSets, suggestionIntersection} 
+  return { row, col, plant, above, below, left, right, adjacentPlants, conflicts, conflictState, messages, suggestionSets, suggestionIntersection }
 }
 
 // if (error) {
 //   res.writeHead(400, "error message")
 //   return res.end()
 // } else {
-function getRandomInt(max) { 
+function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-exports.transformPlot = function(req, res) {
+exports.transformPlot = function (req, res) {
 
-  const givenGarden = req.body; 
-  let checkArray = []; 
+  const givenGarden = req.body;
+  let checkArray = [];
   for (var j = 0; j < givenGarden.length; j++) {
     let checkRow = [];
     for (var k = 0; k < givenGarden[0].length; k++) {
       let move = [j, k, givenGarden[j][k]];
       let check = checkMove(givenGarden, move);
-      checkRow.push(check); 
+      checkRow.push(check);
     }
-    checkArray.push(checkRow); 
+    checkArray.push(checkRow);
   }
-  
-  let transformedGarden = checkArray.map(function(row) {
-    return row.map(function(cell) {
+
+  let conflictArray = checkArray.map(function (row) {
+    return row.map(function (cell) {
+      return cell.conflictState;
+    })
+  })
+
+  let transformedGarden = checkArray.map(function (row) {
+    return row.map(function (cell) {
       // if cell is empty, returning cell.suggestionIntersection gives the array of options
-      let numberOfSuggestions = cell.suggestionIntersection.length; 
-      let randomIndex = getRandomInt(numberOfSuggestions); 
+      let numberOfSuggestions = cell.suggestionIntersection.length;
+      let randomIndex = getRandomInt(numberOfSuggestions);
       // consider just including one for ease of use (?)
-      return (cell.plant > 0 || numberOfSuggestions === 0)? cell.plant: cell.suggestionIntersection[randomIndex]; 
+      return (cell.plant > 0 || numberOfSuggestions === 0) ? cell.plant : cell.suggestionIntersection[randomIndex];
     })
   })
 
   //console.log('server', givenGarden); 
-  res.send({givenGarden, transformedGarden, checkArray}); 
+  res.send({ givenGarden, transformedGarden, conflictArray, checkArray });
 }
