@@ -6,6 +6,8 @@ import { bindActionCreators } from "redux";
 import Schedule from './Schedule';
 import GardenBed from './GardenBed';
 import { getZone, getPlants } from "../selectors";
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 class Home extends Component {
 
@@ -16,12 +18,13 @@ class Home extends Component {
 
   render = () => {
     return (
-      <div className="row" >
+      <div className="row" style={{alignItems: 'center'}}>
         <div className="col-md-6" style={{marginTop: '8px'}}>
+          <div style={{marginBottom: '8px', textAlign:'center'}}><Typography variant="h6" paragraph> Your Garden </Typography></div>
         <GardenBed />
         </div>
-        <div className="col-md-6" style={{marginTop: '8px'}}>
-        <Schedule />
+        <div className="col-md-6" style={{marginTop: '8px', marginBottom: '4px'}}>
+        <Paper style={{padding: '4px'}}><Schedule /></Paper>
         </div>
       </div>
     )
