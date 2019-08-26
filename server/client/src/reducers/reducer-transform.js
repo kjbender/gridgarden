@@ -1,6 +1,6 @@
 import { FETCH_TRANSFORMED_PLOT } from '../actions/types';
 
-export default function (state = {transformedGarden: [], conflictArray: []}, action) {
+export default function (state = {transformedGarden: [], conflictArray: [], plantedList: []}, action) {
   switch (action.type) {
     case FETCH_TRANSFORMED_PLOT: {
       //console.log('reducer', action.payload); 

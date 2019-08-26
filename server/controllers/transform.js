@@ -125,16 +125,22 @@ function getRandomInt(max) {
 exports.transformPlot = function (req, res) {
 
   const givenGarden = req.body;
+  let plantedList = []; 
   let checkArray = [];
   for (var j = 0; j < givenGarden.length; j++) {
     let checkRow = [];
     for (var k = 0; k < givenGarden[0].length; k++) {
+      if (givenGarden[j][k] > 0) {
+        plantedList.push(givenGarden[j][k]); 
+      }
       let move = [j, k, givenGarden[j][k]];
       let check = checkMove(givenGarden, move);
       checkRow.push(check);
     }
     checkArray.push(checkRow);
   }
+
+  plantedList.sort((a, b) => a - b);
 
   let conflictArray = checkArray.map(function (row) {
     return row.map(function (cell) {
@@ -153,5 +159,5 @@ exports.transformPlot = function (req, res) {
   })
 
   //console.log('server', givenGarden); 
-  res.send({ givenGarden, transformedGarden, conflictArray, checkArray });
+  res.send({ givenGarden, transformedGarden, conflictArray, plantedList, checkArray });
 }

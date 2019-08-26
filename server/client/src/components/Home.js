@@ -1,12 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchZone, fetchPlants } from "../actions";
 import { withRouter } from 'react-router'
 import { bindActionCreators } from "redux";
 import Schedule from './Schedule';
 import GardenBed from './GardenBed';
-import { getZone, getPlants } from "../selectors"
-import Grid from '@material-ui/core/Grid';
+import { getZone, getPlants } from "../selectors";
 
 class Home extends Component {
 
