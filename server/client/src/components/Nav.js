@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
  
   },
   appBar: {
-    backgroundColor: '#283593'
+    backgroundColor: '#121c60'
   },
   toolbar: theme.mixins.toolbar,
   content: {
@@ -37,7 +37,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    color: '#c5cae9'
   },
   icon: {
     margin: theme.spacing(0),
