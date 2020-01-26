@@ -2,22 +2,6 @@ var _ = require('lodash');
 
 const plantList = ["", "tomato", "corn", "beans", "onion", "carrot", "broccoli", "chili", "eggplant", "peas", "pepper", "radish", "garlic", "pumpkin", "lettuce", "potato", "red onion", "cucumber"];
 
-
-//['', "Tomatoes", "Corn", "Beans", "Onion", "Carrots"]; 
-
-
-// plant indices: 1, 2, 3, 4, 5
-// const companionMatrix = [
-//   [0, 0, 0, 0, 0, 0],
-//   [0, 0, -1, 0, 1, 1], 
-//   [0, -1, 0, 1, 0, 1], 
-//   [0, 0, 1, 0, -1, 1], 
-//   [0, 1, 0, -1, 0, 1],
-//   [0, 1, 1, 1, 1, 0]
-// ]; 
-// 22 plants 
-// 
-
 const companionMatrix = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, -1, -1, 0, 1, 1, -1, 0, 0, 0, 0, 0, 1, 0, 1, -1, 1, -1],
@@ -38,12 +22,6 @@ const companionMatrix = [
   [0, 1, 0, -1, 0, 1, 1, 1, 0, -1, 1, 0, 0, 0, 1, 1, 0, 0],
   [0, -1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, -1, 0, 0]
 ];
-
-// sample plots:
-// 0s represent empty cells; otherwise the number is the plant index  
-// [ [0, 0], [0, 0] ]
-// [ [1, 2], [3, 4] ]
-// [ [0, 1], [2, 0] ]
 
 const makeMove = function (plot, move) {
   const row = move[0];
